@@ -1068,3 +1068,114 @@ select * from Customers where LastName > 'M' and FirstName < 'J';
 select * from Customers where LastName > 'M' or FirstName < 'J';
 
 select * from Customers where not LastName > 'M';
+
+select * from Customers order by LastName;
+select * from Customers order by LastName ASC;
+select * from Customers order by LastName DESC;
+
+SELECT 
+    Order_ID, 
+    Customer_ID, 
+    Order_Date, 
+    Total_Amount, 
+    Order_Status
+FROM Orders
+WHERE Order_Date BETWEEN '2025-03-01' AND '2025-03-31';
+
+select * from Customers where LastName > 'M';
+
+select * from Customers where LastName < 'H';
+
+select * from Customers where LastName > 'M'
+union
+select * from Customers where LastName < 'H';
+
+select * from Customers where FirstName > 'M';
+
+select * from Customers where FirstName > 'M'
+union
+select * from Customers where LastName < 'H';
+
+select * from Customers where FirstName > 'M'
+union all
+select * from Customers where LastName < 'H';
+
+select * from Customers where FirstName > 'M'
+intersect
+select * from Customers where LastName < 'H';
+
+select * from Customers where FirstName > 'M'
+except
+select * from Customers where LastName < 'H';
+
+select * from Customers where FirstName > 'M';
+
+select * from Orders;
+
+select LastName, FirstName, Total_Amount from Customers, Orders where Customers.Customer_ID=Orders.Customer_ID order by LastName;
+
+-- Customer 40000: 4 orders
+INSERT INTO Orders (Customer_ID, Order_Date, Total_Amount, Order_Status) VALUES
+(40000, '2025-03-01', 48.97, 1),
+(40000, '2025-03-05', 39.97, 2),
+(40000, '2025-03-10', 34.98, 3),
+(40000, '2025-03-15', 53.97, 1);
+
+-- Customer 40001: 5 orders
+INSERT INTO Orders (Customer_ID, Order_Date, Total_Amount, Order_Status) VALUES
+(40001, '2025-03-02', 32.98, 2),
+(40001, '2025-03-06', 46.97, 3),
+(40001, '2025-03-11', 36.48, 1),
+(40001, '2025-03-16', 41.47, 2),
+(40001, '2025-03-21', 34.98, 1);
+
+-- Customer 40002: 4 orders
+INSERT INTO Orders (Customer_ID, Order_Date, Total_Amount, Order_Status) VALUES
+(40002, '2025-03-03', 51.97, 1),
+(40002, '2025-03-07', 48.47, 2),
+(40002, '2025-03-12', 68.97, 3),
+(40002, '2025-03-17', 49.97, 1);
+
+-- Customer 40003: 6 orders
+INSERT INTO Orders (Customer_ID, Order_Date, Total_Amount, Order_Status) VALUES
+(40003, '2025-03-04', 41.97, 2),
+(40003, '2025-03-08', 31.98, 1),
+(40003, '2025-03-13', 46.97, 3),
+(40003, '2025-03-18', 57.97, 2),
+(40003, '2025-03-23', 33.98, 1),
+(40003, '2025-03-28', 38.47, 3);
+
+-- Customer 40004: 5 orders
+INSERT INTO Orders (Customer_ID, Order_Date, Total_Amount, Order_Status) VALUES
+(40004, '2025-03-05', 54.97, 1),
+(40004, '2025-03-10', 48.47, 2),
+(40004, '2025-03-15', 68.97, 3),
+(40004, '2025-03-20', 49.97, 1),
+(40004, '2025-03-25', 41.97, 2);
+
+-- OrderItems for orders 110000–110004
+INSERT INTO OrderItems (Order_ID, Book_ID, Quantity, Unit_Price) VALUES
+(110000, '9780000000001', 1, 14.99),
+(110000, '9780000000002', 2, 16.99),
+(110001, '9780000000003', 1, 19.99),
+(110001, '9780000000004', 1, 12.99),
+(110002, '9780000000005', 2, 11.99),
+(110002, '9780000000006', 1, 15.99),
+(110003, '9780000000007', 1, 18.99),
+(110003, '9780000000008', 2, 13.99),
+(110004, '9780000000009', 3, 17.99);
+
+-- Continue for orders 110005–110009
+INSERT INTO OrderItems (Order_ID, Book_ID, Quantity, Unit_Price) VALUES
+(110005, '9780000000010', 1, 21.99),
+(110005, '9780000000011', 1, 14.49),
+(110006, '9780000000012', 1, 19.49),
+(110006, '9780000000013', 2, 10.99),
+(110007, '9780000000014', 1, 16.49),
+(110007, '9780000000015', 1, 18.49),
+(110008, '9780000000016', 2, 15.49),
+(110008, '9780000000017', 1, 20.99),
+(110009, '9780000000018', 1, 13.49),
+(110009, '9780000000019', 2, 17.49);
+
+select LastName, FirstName, Total_Amount from Customers, Orders where Customers.Customer_ID=Orders.Customer_ID order by LastName;
