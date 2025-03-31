@@ -1515,3 +1515,11 @@ GROUP BY
     c.LastName
 HAVING 
     SUM(o.Total_Amount) > 375;
+
+with largestOrder(value) as
+	(select max(Total_Amount) from Orders)
+select Total_Amount from Orders, largestOrder
+where Orders.Total_Amount = largestOrder.value;
+
+select * from Customers join CustomerAddress
+on Customers.Customer_ID=CustomerAddress.Customer_ID;
