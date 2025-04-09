@@ -1523,3 +1523,20 @@ where Orders.Total_Amount = largestOrder.value;
 
 select * from Customers join CustomerAddress
 on Customers.Customer_ID=CustomerAddress.Customer_ID;
+
+select * from Customers join (select c.Customer_ID, c.PrimaryAddress, g.street_number, 
+g.street_name, g.city, g.state_name from CustomerAddress as c join Address as g
+on c.Address_ID=g.address_ID) as a on Customers.Customer_ID=a.Customer_ID;
+
+select * from Customers right outer join (select c.Customer_ID, c.PrimaryAddress, g.street_number, 
+g.street_name, g.city, g.state_name from CustomerAddress as c right outer join Address as g
+on c.Address_ID=g.address_ID) as a on Customers.Customer_ID=a.Customer_ID;
+
+create view full_addresses as
+select Customers.FirstName, Customers.LastName, a.Customer_ID, a.PrimaryAddress, a.street_number, 
+a.street_name, a.city, a.state_name from Customers right outer join 
+(select c.Customer_ID, c.PrimaryAddress, g.street_number, 
+g.street_name, g.city, g.state_name from CustomerAddress as c right outer join Address as g
+on c.Address_ID=g.address_ID) as a on Customers.Customer_ID=a.Customer_ID;
+
+select * from full_addresses;
